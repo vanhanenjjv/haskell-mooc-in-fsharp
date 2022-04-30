@@ -1,4 +1,6 @@
-﻿open System
+﻿// https://github.com/moocfi/haskell-mooc/blob/master/exercises/Set1.hs
+
+open System
 
 (*
   Ex 1: define variables one and two. They should have type Int and
