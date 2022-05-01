@@ -85,9 +85,12 @@ let checkPassword =
 *)
 
 let postagePrice w =
-    if w <= 500 then 250
-    else if w <= 5000 then 300 + (w - 500)
-    else 6000
+    if w <= 500 then
+        250
+    else if w <= 5000 then
+        w - 500 |> (+) 300
+    else
+        6000
 
 (*
   Ex 8: define a function isZero that returns True if it is given an
@@ -102,3 +105,51 @@ let isZero =
     function
     | 0 -> true
     | _ -> false
+
+(*
+  Ex 9: implement using recursion a function sumTo such that
+    sumTo n
+  computes the sum 1+2+...+n
+*)
+
+let rec sumTo n =
+    if n = 0 then
+        0
+    else
+        n - 1 |> sumTo |> (+) n
+
+(*
+  Ex 10: power n k should compute n to the power k (i.e. n^k)
+  Use recursion.
+*)
+
+let rec power n k =
+    if k = 0 then
+        1
+    else
+        k - 1 |> power n |> (*) n
+
+(*
+  Ex 11: ilog3 n should be the number of times you can divide given
+  number by three (rounding down) before you get 0.
+
+  For example, ilog3 20 ==> 3 since
+    20/3 = 6.66 (gets rounded down to 6)
+    6/3 = 2
+    2/3 = 0.666 (gets rounded down to 0)
+
+  Use recursion to define ilog3. Use the function "div" for integer
+  division. It rounds down for you.
+
+  More examples:
+    ilog3 2 ==> 1
+    ilog3 7 ==> 2
+*)
+
+let rec ilog3 n =
+    let m = Math.Floor(n / 3.0)
+
+    if m = 0.0 then
+        1.0
+    else
+        m |> ilog3 |> (+) 1.0
